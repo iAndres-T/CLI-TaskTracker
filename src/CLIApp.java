@@ -1,5 +1,6 @@
 public class CLIApp {
     public static void main(String[] args) {
+    	TaskService taskService = new TaskService();
 
         if(args.length < 1){
             System.out.println("""
@@ -22,13 +23,14 @@ public class CLIApp {
                     System.out.println("Usage: CLIApp add <description>");
                     return;
                 }
-                System.out.println("Task added");
+                taskService.addTask(args[1]);
             }
             case "update" -> {
                 if(args.length < 3){
                     System.out.println("Usage: CLIApp update <id> <new description>");
                     return;
                 }
+                taskService.updateTask(args[1], args[2]);
                 System.out.println("Task updated successfully (ID: " + args[1] + ")");
             }
             case "delete" -> {
@@ -36,6 +38,7 @@ public class CLIApp {
                     System.out.println("Usage: CLIApp delete <id>");
                     return;
                 }
+                taskService.deleteTask(args[1]);
                 System.out.println("Task deleted successfully (ID: " + args[1] + ")");
             }
             case "mark-in-progress" -> {
@@ -43,6 +46,7 @@ public class CLIApp {
                     System.out.println("Usage: CLIApp mark-in-progress <id>");
                     return;
                 }
+                taskService.markInProgress(args[1]);
                 System.out.println("Task marked as in progress (ID: " + args[1] + ")");
             }
             case "mark-done" -> {
@@ -50,26 +54,28 @@ public class CLIApp {
                     System.out.println("Usage: CLIApp mark-done <id>");
                     return;
                 }
+                taskService.markDone(args[1]);
                 System.out.println("Task marked as done (ID: " + args[1] + ")");
             }
             case "list" -> {
                 if(args.length < 2){
-                    System.out.println("List All");
+                    taskService.listTasks("All");
                 }
                 else{
                     Status filterStatus;
                     try {
                         filterStatus = Status.valueOf(args[1].toUpperCase().replace("-", "_"));
-                    } catch (IllegalArgumentException e) {
+                    } 
+                    catch (IllegalArgumentException e) {
                         System.out.println("Invalid status: " + args[1]);
                         return;
                     }
-                    System.out.println("List by " + args[1]);
+                    taskService.listTasks(filterStatus.toString());
                 }
             }
             default -> System.out.println("Unknown command: " + command);
         }
 
-
+        taskService.saveTasks();
     }
 }
