@@ -64,4 +64,25 @@ Tasks are stored in a JSON file (`task.json`) with the following structure:
 
 ## License
 
+## Installation Steps
+
+1. Clone the repository:
+  ```sh
+  git clone https://github.com/iAndres-T/CLI-TaskTracker
+  ```
+
+2. Navigate to the project directory:
+  ```sh
+  cd CLI-TaskTracker
+  ```
+
+3. Compile the Java files:
+  ```sh
+  javac -d bin src/*.java
+  ```
+
+4. Run the application:
+  ```sh
+  java -cp bin Main
+  ```
 This project is licensed under the MIT License.
