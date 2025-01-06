@@ -63,6 +63,7 @@ Tasks are stored in a JSON file (`task.json`) with the following structure:
 ```
 
 ## License
+This project is licensed under the MIT License.
 
 ## Installation Steps
 
@@ -85,4 +86,3 @@ Tasks are stored in a JSON file (`task.json`) with the following structure:
   ```sh
   java -cp bin Main
   ```
-This project is licensed under the MIT License.
